@@ -21,11 +21,14 @@ flash:
       base: 0x8000000
       bytes: 2097152
 ram:
-  bytes: 393216
+  bytes: 524288
   regions:
+    DTCM:
+      base: 0x20000000
+      bytes: 131072
     SRAM:
       base: 0x20020000
-      bytes: 524288
+      bytes: 393216
     SRAM2:
       base: 0x2007c000
 cores:
@@ -171,7 +174,7 @@ cores:
       kind: ADC_COMMON:aditf2_v1_1
     CAN1:
       address: 0x40006400
-      kind: CAN:bxcan1_v1_1_F7
+      kind: CAN:bxcan1_v1_1
       clock: APB1
       block: can_bxcan/CAN
       pins:
@@ -200,7 +203,7 @@ cores:
         TX: CAN1_TX
     CAN2:
       address: 0x40006800
-      kind: CAN:bxcan1_v1_1_F7
+      kind: CAN:bxcan1_v1_1
       clock: APB1
       block: can_bxcan/CAN
       pins:
@@ -223,7 +226,7 @@ cores:
         TX: CAN2_TX
     CAN3:
       address: 0x40003400
-      kind: CAN:bxcan1_v1_1_F7
+      kind: CAN:bxcan1_v1_1
       clock: APB1
       block: can_bxcan/CAN
       pins:
@@ -492,6 +495,7 @@ cores:
     FLASH:
       address: 0x40023c00
       kind: FLASH:STM32F7_flash_v1_0
+      block: flash_f7/FLASH
     GPIOA:
       address: 0x40020000
       block: gpio_v2/GPIO
@@ -920,6 +924,7 @@ cores:
       address: 0x40007000
       kind: PWR:STM32F7_pwr_v1_0
       clock: APB1
+      block: pwr_f7/PWR
     QUADSPI:
       address: 0xa0001000
       kind: QUADSPI:quadspi1_v1_0
@@ -1028,6 +1033,7 @@ cores:
     RTC:
       address: 0x40002800
       kind: RTC:rtc2_v2_6
+      block: rcc_f7/RCC
       pins:
       - pin: PC13
         signal: OUT
@@ -1618,6 +1624,7 @@ cores:
     SYSCFG:
       address: 0x40013800
       kind: SYS:STM32F7_sys_v1_0
+      block: syscfg_f7/SYSCFG
       clock: APB2
     TIM1:
       address: 0x40010000
